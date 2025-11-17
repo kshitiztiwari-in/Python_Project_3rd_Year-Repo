@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>{% block title %}Blood Donation{% endblock %}</title>
+
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon_io/favicon-32x32.png') }}" type="image/x-icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom">
+        <div class="container">
+
+            <!-- Left Logo -->
+            <a class="navbar-brand d-flex align-items-center m-2 fs-5" href="{{ url_for('home_bp.home') }}">
+                <img src="{{ url_for('static', filename='images/icon.jpg') }}" width="55px">
+                Blood Donation
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Center Menu -->
+            <div class="collapse navbar-collapse justify-content-center" id="mainNav">
+                <ul class="navbar-nav mb-2 mb-lg-0">
+
+                    <li class="nav-item">
+                        <a class="nav-link active mx-2 fs-5" href="{{ url_for('home_bp.home') }}">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link mx-2 fs-5" href="{{ url_for('home_bp.find_donor') }}">Find Centers</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link mx-2 fs-5" href="{{ url_for('home_bp.register') }}">Register</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link mx-2 fs-5" href="{{ url_for('home_bp.contact_us') }}">Contact Us</a>
+                    </li>
+
+                    <li class="nav-item ms-5">
+                        <button type="button" class=" btn btn-danger ms-5 fs-5">Donate Now</button>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- CONTENT SECTION -->
+    <main class="container my-4">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-dark text-white text-center p-3 mt-4">
+        © <span id="currentYear"></span> Blood Donation Management System | All Rights Reserved
+        
+        <script>
+            document.getElementById("currentYear").innerHTML = new Date().getFullYear();
+        </script>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

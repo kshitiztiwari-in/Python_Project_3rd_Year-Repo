@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Register | Blood Donation{% endblock %}
+
+{% block content %}
+<div class="conatiner ">
+    <h2 class="text-center">Become A Lifesaver Today</h2>
+    <h3 class="text-center">Regsiter Now</h3>
+</div>
+<p>full name gender age blood group phone email address "password needs to be added in tables" </p>
+<form class="row g-3 border m-2 p-2 rounded-3">
+    <div class="col-12">
+    <label for="inputFullName" class="form-label">Full Name</label>
+    <input type="text" class="form-control" id="inputFullName">
+  </div>
+  <div class="col-md-6">
+    <label for="inputEmail4" class="form-label">Email</label>
+    <input type="email" class="form-control" id="inputEmail4">
+  </div>
+  <div class="col-md-6">
+    <label for="inputGender" class="form-label">Gender</label>
+    <select id="inputGender" class="form-select">
+      <option selected>Choose...</option>
+      <option>Male</option>
+      <option>Female</option>
+      <option>Other</option>
+    </select>
+  </div>
+  <div class="col-md-6">
+    <label for="inputAge" class="form-label">Age</label>
+    <input type="text" class="form-control" id="inputAge">
+  </div>
+  <div class="col-md-6">
+    <label for="inputPhoneNumber" class="form-label">Phone Number</label>
+    <input type="text" class="form-control" id="inputPhoneNumber">
+  </div>
+  <div class="col-12">
+    <label for="inputPassword4" class="form-label">Password</label>
+    <input type="password" class="form-control" id="inputPassword4">
+  </div>
+  <div class="col-12">
+    <label for="inputAddress" class="form-label">Address</label>
+    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+  </div>
+  <div class="col-md-6">
+    <label for="inputCity" class="form-label">City</label>
+    <input type="text" class="form-control" id="inputCity">
+  </div>
+  <div class="col-md-4">
+    <label for="inputState" class="form-label">State</label>
+    <select id="inputState" class="form-select">
+      <option selected>Choose...</option>
+      <option>...</option>
+    </select>
+  </div>
+  <div class="col-md-2">
+    <label for="inputZip" class="form-label">Zip</label>
+    <input type="text" class="form-control" id="inputZip">
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">Sign in</button>
+  </div>
+</form>
+{% endblock %}
