@@ -3,5 +3,74 @@
 {% block title %}Home | Blood Donation{% endblock %}
 
 {% block content %}
-<div class="div"></div>
+<style>
+    /* Background Image */
+    body {
+        background-color: rgba(233, 9, 9, 0.397);
+
+    }
+</style>
+<div class="banner-container text-center">
+    <img src="{{ url_for('static', filename='images/Bg_Banner1_Final.png') }}"
+        class="img-fluid w-100 rounded-0 banner-img shadow">
+</div>
+<div class="container-fluid w-100 pt-3 p-3">
+    <div class="container my-2 bg-danger rounded-3 p-3 border border-dark shadow">
+        <div class="row">
+
+            <div class="col-sm-4 mb-3 mb-sm-0 d-flex">
+                <div class="card h-100 w-100">
+                    <div class="card-body text-center d-flex flex-column">
+                        <h5 class="card-title">WHY DONATE</h5>
+                        <p class="card-text flex-grow-1">
+                            With supporting text below as a natural lead-in to additional content.
+                        </p>
+                        <a href="{{ url_for('home_bp.why_donate') }}" class="btn btn-danger mt-auto">
+                            LEARN MORE
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4 d-flex">
+                <div class="card h-100 w-100">
+                    <div class="card-body text-center d-flex flex-column">
+                        <h5 class="card-title">WHO CAN DONATE</h5>
+                        <p class="card-text flex-grow-1">
+                            With supporting text below as a natural lead-in to additional content.
+                        </p>
+                        <a href="{{ url_for('home_bp.who_can_donate') }}" class="btn btn-danger mt-auto">
+                            LEARN MORE
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4 d-flex">
+                <div class="card h-100 w-100">
+                    <div class="card-body text-center d-flex flex-column">
+                        <h5 class="card-title">DONATION PROCESS</h5>
+                        <p class="card-text flex-grow-1">
+                            With supporting text below as a natural lead-in to additional content.
+                        </p>
+                        <a href="{{ url_for('home_bp.donation_process') }}" class="btn btn-danger mt-auto">
+                            LEARN MORE
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="container p-0 text-center">
+        <div>
+            <p class="fs-2 fw-semibold text-center py-1">Become A Registered Donor Today</p>
+        </div>
+        <div class="pb-5 mb-3 text-center">
+            <a href="{{ url_for('home_bp.register') }}" class="btn btn-danger p-3 fw-bold">
+                Register Now !!
+            </a>
+        </div>
+    </div>
+</div>
 {% endblock %}

@@ -1,0 +1,54 @@
+{% extends "/admin/admin_base.html" %}
+
+{% block title %}Admin | Add Campaign | Blood Donation{% endblock %}
+
+{% block content %}
+<style>
+    /* Background Image */
+    body {
+        background-color: rgba(233, 9, 9, 0.397);
+    }
+</style>
+<div class="container my-4 ">
+    <form class="row g-3 m-2 p-3 col-lg-5 col-sm-10 mx-auto border border-dark rounded-4 border-5 bg-light"
+        action="{{ url_for('admin_bp.admin_add_campaign') }}" method="POST">
+
+        <h3 class="text-center border border-dark border-3 p-2 rounded">
+            ADD NEW CAMPAIGN
+        </h3>
+
+        <div class="col-12">
+            <label class="form-label">Campaign Name</label>
+            <input type="text" name="name" class="form-control border-secondary" required>
+        </div>
+
+        <div class="col-12">
+            <label class="form-label">Location</label>
+            <input type="text" name="location" class="form-control border-secondary" required>
+        </div>
+
+        <div class="col-12">
+            <label class="form-label">Date</label>
+            <input type="date" name="date" class="form-control border-secondary" required>
+        </div>
+
+        <div class="col-12">
+            <label class="form-label">Organizer</label>
+            <input type="text" name="organizer" class="form-control border-secondary">
+        </div>
+
+        <div class="col-12">
+            <label class="form-label">Description</label>
+            <textarea name="description" class="form-control border border-dark" rows="3"></textarea>
+        </div>
+
+        <div class="d-grid col-4 mx-auto">
+            <button type="submit" class="btn btn-danger">
+                Add Campaign
+            </button>
+        </div>
+
+    </form>
+</div>
+
+{% endblock %}

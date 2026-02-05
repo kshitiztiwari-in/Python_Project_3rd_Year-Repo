@@ -1,9 +1,10 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <title>{% block title %}Blood Donation{% endblock %}</title>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
@@ -11,16 +12,19 @@
     <link rel="icon" href="{{ url_for('static', filename='images/favicon_io/favicon-32x32.png') }}" type="image/x-icon">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 </head>
+
 <body>
 
     <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom pt-1 py-0">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary border-dark border-bottom p-2 shadow">
         <div class="container">
 
             <!-- Left Logo -->
             <a class="navbar-brand d-flex align-items-center mx-2  fs-6" href="{{ url_for('home_bp.home') }}">
-                <img src="{{ url_for('static', filename='images/icon.jpg') }}" width="55px">
+                <img class="me-3" src="{{ url_for('static', filename='images/icon.jpg') }}" width="20px" alt="blood_donation_icon">
                 Blood Donation
             </a>
 
@@ -37,7 +41,10 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link mx-2 fs-6" href="{{ url_for('home_bp.find_donor') }}">Find Centers</a>
+                        <a class="nav-link mx-2 fs-6" href="{{ url_for('home_bp.find_donor') }}">Find Donors</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2 fs-6" href="{{ url_for('home_bp.campaigns') }}">Campaigns</a>
                     </li>
 
                     <li class="nav-item">
@@ -49,7 +56,8 @@
                     </li>
 
                     <li class="nav-item ms-5">
-                        <button type="button" class=" btn btn-danger ms-5 fs-6">Donate Now</button>
+                        <a class=" btn btn-danger ms-5 fs-6 d-none d-lg-block"
+                            href="{{ url_for('home_bp.register') }}">Donate Now</a>
                     </li>
 
                 </ul>
@@ -57,23 +65,47 @@
 
         </div>
     </nav>
-
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="container mt-3">
+        {% for category, message in messages %}
+        <div class="fs-5 alert alert-{{ category }} alert-dismissible fade show auto-dismiss" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
     <!-- CONTENT SECTION -->
-    <main class="container my-4">
+    <main class="container-fluid p-0">
         {% block content %}
         {% endblock %}
     </main>
 
     <!-- FOOTER -->
-    <footer class="fixed-bottom bg-dark text-white text-center p-3 mt-4">
+    <footer class="fixed-bottom bg-dark text-white text-center p-3 mt-4 pb-4">
         © <span id="currentYear"></span> Blood Donation Management System | All Rights Reserved
-        
+
         <script>
             document.getElementById("currentYear").innerHTML = new Date().getFullYear();
         </script>
+        <a href="{{ url_for('home_bp.logout') }}" class="btn btn-secondary position-absolute end-0  me-4">Logout <i
+                class="bi bi-box-arrow-right" style="font-size: 16px;"></i></a>
+
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Auto-dismiss flash messages -->
+    <script>
+        setTimeout(() => {
+            document.querySelectorAll('.auto-dismiss').forEach(alert => {
+                const bsAlert = new bootstrap.Alert(alert);
+                bsAlert.close();
+            });
+        }, 2000); // 2 seconds
+    </script>
 
 </body>
+
 </html>

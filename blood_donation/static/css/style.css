@@ -1,27 +1,81 @@
-body{
-    margin:0;
-    padding:0;
+body {
+    margin: 0;
+    padding: 0;
     font-family: Arial, Helvetica, sans-serif;
-    padding-bottom: 80px;
 }
+
+body::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Opera */
+}
+
+/* Home.html css */
+
+/* Custom Colors */
+
+.dynamicViewAdjuster{
+    min-height: clamp(50dvh, 65dvh, 80dvh);
+    display: block;
+}
+
+.blueColorBg {
+    background-color: #d9eaf5;
+}
+
+.whiteBg {
+    background-color: white
+}
+
 
 /* Register.html css */
 
 /* Background Image */
-    /* Mobile fix: avoid grey screen / background disappearing */
-    @media (max-width: 768px) {
-        body {
-            background-attachment: scroll;
-            background-size: cover;
-        }
+/* Mobile fix: avoid grey screen / background disappearing */
+@media (max-width: 768px) {
+    body {
+        background-attachment: scroll;
+        background-size: cover;
     }
+}
 
-    /* Make form readable on background */
-    .form-box {
-        background: rgba(255, 255, 255, 0.85);  /* semi-transparent white */
-        backdrop-filter: blur(8px);              /* blur effect */
-        padding: 25px;
-        border-radius: 10px;
-        border: 2px solid #333;
+@media (max-height: 940px) and (max-width: 600px) {
+    body {
+        padding-bottom: 60px;
     }
+}
 
+
+/* Make form readable on background */
+.form-box {
+    background: rgba(255, 255, 255, 0.85);
+    /* semi-transparent white */
+    backdrop-filter: blur(8px);
+    /* blur effect */
+    padding: 25px;
+    border-radius: 10px;
+    border: 2px solid #333;
+}
+
+/* find_donor.html css */
+
+/* Glass effect for the dropup menu */
+.custom-blood-dropdown {
+    background: rgba(255, 255, 255, 0.15) !important;  /* semi-transparent */
+    backdrop-filter: blur(3px) !important;
+    -webkit-backdrop-filter: blur(3px) !important;     /* Safari */
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25) !important;
+    border-radius: 0.75rem;
+}
+
+/* Items themselves stay transparent until hover */
+.custom-blood-dropdown .dropdown-item {
+    background-color: transparent !important;
+}
+
+/* Your red hover + active */
+.custom-blood-dropdown .dropdown-item:hover,
+.custom-blood-dropdown .dropdown-item.active {
+    background-color: #dc3545 !important;
+    color: #fff !important;
+}

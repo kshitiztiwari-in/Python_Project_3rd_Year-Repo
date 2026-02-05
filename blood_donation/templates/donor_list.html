@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Donors - {{ blood_group }}{% endblock %}
+
+{% block content %}
+<style>
+    /* Background Image */
+    body {
+        background-color: rgba(233, 9, 9, 0.397);
+
+    }
+</style>
+<div class="container my-5">
+
+    <h3 class="text-center mb-4">
+        Donors with Blood Group {{ blood_group }}
+    </h3>
+
+    {% if donors %}
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover text-center align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Age</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for d in donors %}
+                <tr>
+                    <td>{{ d[0] }}</td>
+                    <td>{{ d[1] }}</td>
+                    <td>{{ d[2] }}</td>
+                    <td>{{ d[3] }}</td>
+                    <td>{{ d[4] or '-' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+        <div class="alert alert-warning text-center">
+            No donors found for blood group {{ blood_group }}.
+        </div>
+    {% endif %}
+
+    <div class="text-center mt-4">
+        <a href="{{ url_for('home_bp.find_donor') }}"
+           class="btn btn-danger">
+           Search Again
+        </a>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Donate Blood{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+
+    <h3 class="text-center mb-4">Donate Blood</h3>
+
+    <form method="POST" action="" class="col-lg-5 col-sm-10 mx-auto p-4 border rounded bg-light"
+        onsubmit="this.querySelector('button[type=submit]').disabled = true;">
+
+        <div class="mb-3">
+            <label>Campaign</label>
+            <input class="form-control" value="{{ campaign[1] }}" disabled>
+        </div>
+
+        <div class="mb-3">
+            <label>Your Name</label>
+            <input class="form-control" value="{{ donor[0] }}" disabled>
+        </div>
+
+        <div class="mb-3">
+            <label>Blood Group</label>
+            <input class="form-control" value="{{ donor[1] }}" disabled>
+        </div>
+
+        <div class="mb-3">
+            <label>Units to Donate</label>
+            <select name="units" class="form-select" required>
+                <option value="1">1 Unit</option>
+                <option value="2">2 Units</option>
+            </select>
+        </div>
+
+        <div class="d-grid">
+            <!-- <button class="btn btn-danger">Confirm Donation</button> -->
+            <button type="submit" class="btn btn-danger">
+                Confirm Donation
+            </button>
+        </div>
+    </form>
+
+</div>
+{% endblock %}

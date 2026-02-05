@@ -1,0 +1,195 @@
+{% extends "/admin/admin_base.html" %}
+
+{% block title %}Admin | Dashboard | Blood Donation{% endblock %}
+
+{% block content %}
+<style>
+    /* Background Image */
+    body {
+        background-color: rgba(233, 9, 9, 0.397);
+    }
+</style>
+<div class="p-3 container">
+    <div class="container-fluid fs-1 fw-bold">
+        <p>Dashboard Summary</p>
+    </div>
+    <div class="border border-dark border-2"></div>
+    <div class="container-fluid p-3">
+        <div class="">
+            <div class="row p-2 mt-3 align-items-stretch">
+                <div class="col-sm-4 mb-3 mb-sm-0">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="text-center"><i class="bi bi-person "
+                                    style="font-size: 56px; color: rgb(237, 100, 100);"></i></div>
+                            <p class="card-title text-center fw-bold fs-4">TOTAL DONORS
+                            </p>
+                            <p class="fs-5 fw-bolder text-center">Number of total donors displays here</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="text-center"><i class="bi bi-calendar-check"
+                                    style="font-size: 56px; color: rgb(237, 100, 100);"></i></div>
+                            <p class="card-title text-center fw-bold fs-4">ACTIVE CAMPAINGS
+                            </p>
+                            <p class="fs-5 fw-bolder text-center">Number of total Active Campaings displays here</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="text-center"><i class="bi bi-person-plus"
+                                    style="font-size: 56px; color: rgb(237, 100, 100);"></i></div>
+                            <p class="card-title text-center fw-bold fs-4">UPCOMING REQUESTS
+                            </p>
+                            <p class="fs-5 fw-bolder text-center">Number of total Upcming Requests displays here</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="">
+            <div class="row p-2 mt-3">
+                <div class="col-sm-12 mb-3 mb-sm-0">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Blood Stock Overview</h5>
+                            <div class="container my-4">
+
+                                <h3 class="mb-4 text-center">Admin Dashboard</h3>
+
+                                <!-- SUMMARY CARDS -->
+                                <div class="row text-center mb-4">
+
+                                    <div class="col-md-3">
+                                        <div class="card bg-primary text-white">
+                                            <div class="card-body">
+                                                <h6>Total Units</h6>
+                                                <h3>{{ total_units }}</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="card bg-danger text-white">
+                                            <div class="card-body">
+                                                <h6>Critical</h6>
+                                                <h3>{{ critical_count }}</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="card bg-warning text-dark">
+                                            <div class="card-body">
+                                                <h6>Low</h6>
+                                                <h3>{{ low_count }}</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="card bg-success text-white">
+                                            <div class="card-body">
+                                                <h6>Stable</h6>
+                                                <h3>{{ stable_count }}</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!-- ALERT TABLE -->
+                                <h5 class="mb-3">Critical / Low Blood Groups</h5>
+
+                                <table class="table table-bordered text-center mb-5">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>Blood Group</th>
+                                            <th>Quantity</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for b in stocks %}
+                                        {% if b[2] != 'Stable' %}
+                                        <tr
+                                            class="{% if b[2]=='Critical' %}table-danger{% else %}table-warning{% endif %}">
+                                            <td>{{ b[0] }}</td>
+                                            <td>{{ b[1] }}</td>
+                                            <td>{{ b[2] }}</td>
+                                        </tr>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+
+                                <!-- GRAPH -->
+                                <h5 class="mb-3">Blood Stock Overview</h5>
+                                <canvas id="bloodChart" height="100"></canvas>
+
+                            </div>
+
+                            <!-- Chart.js -->
+                            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+                            <script>
+                                const bloodData = {{ stocks | tojson }};
+
+                                const labels = bloodData.map(b => b[0]);
+                                const quantities = bloodData.map(b => b[1]);
+                                const colors = bloodData.map(b => {
+                                    if (b[2] === 'Critical') return '#dc3545';
+                                    if (b[2] === 'Low') return '#ffc107';
+                                    return '#198754';
+                                });
+
+                                new Chart(document.getElementById('bloodChart'), {
+                                    type: 'bar',
+                                    data: {
+                                        labels: labels,
+                                        datasets: [{
+                                            label: 'Units Available',
+                                            data: quantities,
+                                            backgroundColor: colors
+                                        }]
+                                    },
+                                    options: {
+                                        responsive: true,
+                                        scales: {
+                                            y: { beginAtZero: true }
+                                        }
+                                    }
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mb-5">
+        <div class="p-3">
+            <p class="fs-2 fw-bold text-center">Become A Registered Donor Today</p>
+        </div>
+        <div>
+            <div class="p-1 mb-5 pb-5 text-center">
+                <a href="{{ url_for('admin_bp.admin_add_donor') }}"
+                    class="btn btn-danger w-25 p-2 fs-5 fw-bold border border-dark border-2">New
+                    Donor</a>
+                <a href="{{ url_for('admin_bp.admin_add_campaign') }}"
+                    class="btn btn-danger w-25 p-2 fs-5 fw-bold border border-dark border-2">New
+                    Camp</a>
+                <a href="{{ url_for('admin_bp.admin_manage_camp') }}"
+                    class="btn btn-danger w-25 p-2 fs-5 fw-bold border border-dark border-2">All
+                    Request</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

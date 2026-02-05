@@ -1,0 +1,62 @@
+{% extends "/admin/admin_base.html" %}
+{% block title %}Edit Campaign{% endblock %}
+
+{% block content %}
+<style>
+    /* Background Image */
+    body {
+        background-color: rgba(233, 9, 9, 0.397);
+
+    }
+</style>
+<div class="container my-4">
+
+    <form method="POST" class="col-lg-6 col-sm-10 mx-auto p-4 border border-dark rounded-4 border-5 rounded bg-light">
+        <h3 class="text-center border border-dark border-3 p-2 rounded">EDIT CAMPAIGN</h3>
+        <!-- NOT EDITABLE -->
+        <div class="mb-3">
+            <label>Campaign Name</label>
+            <input type="text" class="form-control" value="{{ campaign[1] }}" disabled>
+        </div>
+
+        <div class="mb-3">
+            <label>Location</label>
+            <input type="text" name="location" class="form-control"
+                   value="{{ campaign[2] }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Date</label>
+            <input type="date" name="date" class="form-control"
+                   value="{{ campaign[3] }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Organizer</label>
+            <input type="text" name="organizer" class="form-control"
+                   value="{{ campaign[4] }}">
+        </div>
+
+        <div class="mb-3">
+            <label>Description</label>
+            <textarea name="description" class="form-control"
+                      rows="3">{{ campaign[5] }}</textarea>
+        </div>
+
+        <div class="mb-3">
+            <label>Status</label>
+            <select name="status" class="form-select" required>
+                <option value="Active" {{ 'selected' if campaign[6]=='Active' }}>Active</option>
+                <option value="Completed" {{ 'selected' if campaign[6]=='Completed' }}>Completed</option>
+                <option value="Cancelled" {{ 'selected' if campaign[6]=='Cancelled' }}>Cancelled</option>
+            </select>
+        </div>
+
+        <div class="d-grid">
+            <button class="btn btn-danger">Update Campaign</button>
+        </div>
+
+    </form>
+
+</div>
+{% endblock %}

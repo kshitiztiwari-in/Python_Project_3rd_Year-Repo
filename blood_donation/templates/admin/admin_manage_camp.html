@@ -1,0 +1,87 @@
+{% extends "/admin/admin_base.html" %}
+
+{% block title %}Admin | Manage Camps | Blood Donation{% endblock %}
+
+{% block content %}
+<style>
+    /* Background Image */
+    body {
+        background-color: rgba(233, 9, 9, 0.397);
+    }
+</style>
+<div class="container">
+    <!-- <div class="pt-3">
+        <p class="fs-2 fw-bold">Add Donation Camps</p>
+    </div> -->
+    <div class="container-fluid fs-1 fw-bold pt-3 ">
+        <p>Add Donation Camps</p>
+    </div>
+    <div class="border border-dark border-2"></div>
+</div>
+<div class="container pt-3">
+    <div class="border border-dark border-3 rounded p-2 bg-light text-center">
+        <p class="fw-bold fs-4 m-0 p-3">To Add A Donation Camp    <a class="btn btn-danger fs-5 inline-block ms-3" href="{{ url_for('admin_bp.admin_add_campaign') }}">Click Here</a></p>
+    </div>
+</div>
+<div class="container">
+    <!-- <div class="pt-5">
+        <p class="fs-2 fw-bold">Manage Donation Camps</p>
+    </div> -->
+    <div class="container-fluid fs-1 fw-bold pt-5 ">
+        <p>Manage Donation Camps</p>
+    </div>
+    <div class="border border-dark border-2"></div>
+</div>
+<div class="container pt-3">
+    <div class="border border-dark border-3 rounded p-2 bg-light">
+        <div class="border border-dark border-2 rounded p-2 fs-4 fw-bold text-center">
+            <p class="m-0">All Campaigns</p>
+        </div>
+        <div>
+            <table class="mt-4 table-responsive table table-bordered table-striped table-hover align-middle text-center ">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Location</th>
+                        <th>Date</th>
+                        <th>Organizer</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody class="table-danger">
+                    {% for c in campaigns %}
+                    <tr>
+                        <td>{{ c[0] }}</td>
+                        <td>{{ c[1] }}</td>
+                        <td>{{ c[2] }}</td>
+                        <td>{{ c[3] }}</td>
+                        <td>{{ c[4] or '-' }}</td>
+
+                        <td>
+                            <span class="badge 
+                        {% if c[5] == 'Active' %} bg-success
+                        {% elif c[5] == 'Completed' %} bg-secondary
+                        {% else %} bg-danger {% endif %}">
+                                {{ c[5] }}
+                            </span>
+                        </td>
+
+                        <td>
+                            <a href="{{ url_for('admin_bp.admin_edit_campaign', campaign_id=c[0]) }}"
+                                class="btn btn-sm btn-danger">
+                                Edit
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

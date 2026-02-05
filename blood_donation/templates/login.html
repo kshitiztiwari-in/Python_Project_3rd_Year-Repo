@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Login | Blood Donation{% endblock %}
+
+{% block content %}
+
+<style>
+  body {
+    background: url("{{ url_for('static', filename='images/BgRegisiterFinal.png') }}")
+      no-repeat center center fixed;
+    background-size: cover;
+  }
+</style>
+
+<div class="container">
+  <h2 class="text-center my-4 text-light fs-1">Become A Lifesaver Today</h2>
+</div>
+
+<div class="container my-4">
+  <form class="row g-3 m-2 p-3 col-lg-5 col-sm-10 mx-auto form-box border-dark border-5 rounded-4"
+        action="{{ url_for('home_bp.login') }}"
+        method="POST">
+
+    <h3 class="text-center border border-dark border-3 p-2 rounded">
+      Login Now
+    </h3>
+
+    <div class="col-12">
+      <label class="form-label">Email</label>
+      <input type="email" name="email" class="form-control border-secondary" required>
+    </div>
+
+    <div class="col-12">
+      <label class="form-label">Password</label>
+      <input type="password" name="password" class="form-control border-secondary" required>
+    </div>
+
+    <div class="text-center">
+      <p>New Donor? <a href="{{ url_for('home_bp.register') }}">Register Now</a></p>
+    </div>
+
+    <div class="d-grid col-4 mx-auto">
+      <button type="submit" class="btn btn-danger">Login in</button>
+    </div>
+
+  </form>
+</div>
+
+{% endblock %}

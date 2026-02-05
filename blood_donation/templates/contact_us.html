@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title %}Contact | Blood Donation{% endblock %}
+
+{% block content %}
+<style>
+    /* Background Image */
+    body {
+        background-color: rgba(233, 9, 9, 0.397);
+
+    }
+</style>
+<div class="container p-5">
+    <h2 class="p-3 fs-1 fw-bolder">Get in Touch</h2>
+</div>
+<div class="container pt-1 p-5 ">
+    <div class="mx-auto">
+        <div class="container">
+            <div class="row">
+                <!-- Card 1 -->
+                <div class="col-md-6 mb-3">
+                    <div class="card border border-dark rounded-4">
+                        <div class="card-body ">
+                            <h5 class="card-title text-center fs-3 p-2">Contact Information</h5>
+                            <div class=" pt-2 p-5">
+                                <p class="card-text">
+                                <p class="mb-0 fw-bolder fs-5">Phone Number:</p>
+                                <p class="ms-5 my-0 fw-semibold">+91-1800-456-800</p>
+                                <p class="mb-0 fw-bolder fs-5">Email Address:</p>
+                                <p class="ms-5 my-0 fw-semibold">blood_doante@gmail.com</p>
+                                <p class="mb-0 fw-bolder fs-5">Physical Address:</p>
+                                <p class="ms-5 my-0 fw-semibold">Office No. 503, Sunrise Corporate Plaza,
+                                    <br>AB Road, Indore, Madhya Pradesh – 452001
+                                </p>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="col-md-6 mb-3">
+                    <div class="card border border-dark rounded-4">
+                        <div class="card-body">
+                            <h5 class="card-title text-center fs-3 p-2">Send Us Message</h5>
+                            <div class="p-4">
+                                <form class="fw-semibold">
+                                    <div class="row mb-3">
+                                        <label for="inputName" class="col-sm-2 col-form-label ">Name</label>
+                                        <div class="col-sm-10 ">
+                                            <input type="text" class="form-control border border-dark" id="inputName">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="inputSubject" class="col-sm-2 col-form-label">Subject</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control border border-dark" id="inputSubject">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="inputMessage"class="col-sm-2 " class="form-label">Message</label>
+                                        <div class="col-sm-10"><textarea class="form-control border border-dark" id="inputMessage"></textarea></div>
+                                    </div>
+                                    <div class="text-center"><button type="submit" class="btn btn-danger">Submit</button></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

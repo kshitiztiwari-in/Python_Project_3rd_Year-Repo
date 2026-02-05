@@ -1,0 +1,127 @@
+
+{% extends "/admin/admin_base.html" %}
+{% block title %}Blood Stock Dashboard{% endblock %}
+
+{% block content %}
+<style>
+    /* Background Image */
+    body {
+        background-color: rgba(233, 9, 9, 0.397);
+    }
+</style>
+<div class="container my-4">
+
+    <div class="container-fluid fs-1 fw-bold pt-2 ">
+        <p>Blood Stock Dashboard</p>
+    </div>
+    <div class="border border-dark border-2"></div>
+
+    <!-- SUMMARY CARDS -->
+    <div class="pt-3 row text-center mb-4">
+
+        <div class="col-md-3">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <h5>Total Units</h5>
+                    <h2>{{ total_units }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card bg-danger text-white">
+                <div class="card-body">
+                    <h5>Critical</h5>
+                    <h2>{{ critical_count }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card bg-warning text-dark">
+                <div class="card-body">
+                    <h5>Low</h5>
+                    <h2>{{ low_count }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <h5>Stable</h5>
+                    <h2>{{ stable_count }}</h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ALERT TABLE -->
+    <h5 class="mb-3">Critical / Low Blood Groups</h5>
+
+    <table class="table table-bordered text-center mb-5">
+        <thead class="table-dark">
+            <tr>
+                <th>Blood Group</th>
+                <th>Quantity</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for b in stocks %}
+            {% if b[2] != 'Stable' %}
+            <tr class="{% if b[2]=='Critical' %}table-danger{% else %}table-warning{% endif %}">
+                <td>{{ b[0] }}</td>
+                <td>{{ b[1] }}</td>
+                <td>{{ b[2] }}</td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- GRAPH -->
+    <h5 class="mb-3">Blood Stock Graph</h5>
+    <canvas id="bloodChart" height="100" class="bg-light"></canvas>
+
+</div>
+<div class="mb-5 p-1">
+    <div class="mb-5"></div>
+</div>
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const bloodData = {{ stocks | tojson }};
+
+    const labels = bloodData.map(item => item[0]);
+    const quantities = bloodData.map(item => item[1]);
+    const colors = bloodData.map(item => {
+        if (item[2] === 'Critical') return '#dc3545';
+        if (item[2] === 'Low') return '#ffc107';
+        return '#198754';
+    });
+
+    new Chart(document.getElementById('bloodChart'), {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Units Available',
+                data: quantities,
+                backgroundColor: colors
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
+{% endblock %}

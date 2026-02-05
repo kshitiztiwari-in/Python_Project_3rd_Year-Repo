@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}Find Donors | Blood Donation{% endblock %}
+
+{% block content %}
+<style>
+    /* Background Image */
+    body {
+        background-color: rgba(233, 9, 9, 0.397);
+
+    }
+</style>
+<div class="dynamicViewAdjuster">
+    <div class="banner-container text-center">
+        <img src="{{ url_for('static', filename='images/Bg_Banner2_Final.png') }}"
+            class="img-fluid w-100 rounded-0 banner-img shadow">
+    </div>
+
+    <div class="container-fluid w-100  pt-3 p-3">
+        <div class="container my-2 whiteBg rounded-3 p-3 border border-dark shadow-lg bg-danger">
+            <form method="POST" action="{{ url_for('home_bp.find_donor') }}">
+                <input type="hidden" name="blood_group" id="blood_group">
+                <!-- WRAPPER -->
+                <div class="d-flex justify-content-center p-2">
+                    <!-- BAR -->
+                    <div class="d-flex align-items-center gap-2 w-75">
+                        <!-- DROPDOWN -->
+                        <div class="dropup flex-grow-1">
+                            <button id="bloodDropdown" class="form-select border border-dark text-start" type="button"
+                                data-bs-toggle="dropdown">
+                                Select Blood Group
+                            </button>
+                            <ul class="dropdown-menu w-100 custom-blood-dropdown">
+                                {% for bg in ['A+','A-','B+','B-','O+','O-','AB+','AB-'] %}
+                                <li>
+                                    <a class="dropdown-item" onclick="selectBlood('{{ bg }}')">
+                                        {{ bg }}
+                                    </a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <!-- BUTTON -->
+                        <button type="submit" class="btn btn-dark px-4 fw-semibold" id="searchBtn" disabled>
+                            Search Donors
+                        </button>
+
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+        <div class="container p-2 text-center">
+            <div>
+                <p class="fs-2 fw-semibold text-center py-4">Become A Registered Donor Today</p>
+            </div>
+            <div class="text-center mb-5">
+                <a href="{{ url_for('home_bp.register') }}" class="btn btn-danger p-3 fw-bold">
+                    Register Now !!
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function selectBlood(group) {
+        document.getElementById("blood_group").value = group;
+        document.getElementById("bloodDropdown").innerText = group;
+        document.getElementById("searchBtn").disabled = false;
+    }
+</script>
+
+{% endblock %}

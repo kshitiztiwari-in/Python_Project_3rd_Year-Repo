@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Campaings | Blood Donation{% endblock %}
+{% block content %}
+<style>
+    /* Background Image */
+    body {
+        background-color: rgba(233, 9, 9, 0.397);
+
+    }
+</style>
+<div class="container my-5">
+
+    <h2 class="text-center mb-4">Active Blood Donation Campaigns</h2>
+
+    {% if campaigns %}
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover text-center align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Campaign</th>
+                    <th>Location</th>
+                    <th>Date</th>
+                    <th>Organizer</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for c in campaigns %}
+                <tr>
+                    <td>{{ c[1] }}</td>
+                    <td>{{ c[2] }}</td>
+                    <td>{{ c[3] }}</td>
+                    <td>{{ c[4] or '-' }}</td>
+                    <td>
+                        <!-- Donate page will be added later -->
+                        <a href="{{ url_for('home_bp.donate_campaign', campaign_id=c[0]) }}"
+                            class="btn btn-danger btn-sm">
+                            Donate
+                        </a>
+
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="alert alert-info text-center">
+        No active campaigns available right now.
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}

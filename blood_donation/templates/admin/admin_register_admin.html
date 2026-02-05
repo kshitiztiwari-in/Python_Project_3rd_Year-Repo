@@ -1,0 +1,71 @@
+{% extends "/admin/admin_base.html" %}
+
+{% block title %}Admin | Register Page | Blood Donation{% endblock %}
+
+{% block content %}
+
+<style>
+   body {
+        background-color: rgba(233, 9, 9, 0.397);
+
+    }
+</style>
+
+<div class="admin-register-bg">
+    <div class="container mt-5">
+        <form class="col-lg-5 col-sm-10 mx-auto border border-dark rounded-4 bg-light p-5 shadow-lg"
+              method="POST"
+              action="{{ url_for('admin_bp.admin_register') }}">
+
+            <div class="border border-dark rounded-4 p-3 mt-3 mb-5">
+                <p class="fs-2 m-0 fw-bold text-center">Admin Register</p>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Username</label>
+                <div class="col-sm-9">
+                    <input type="text"
+                           class="form-control border border-dark"
+                           name="username"
+                           required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Email</label>
+                <div class="col-sm-9">
+                    <input type="email"
+                           class="form-control border border-dark"
+                           name="email"
+                           required>
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <label class="col-sm-3 col-form-label">Password</label>
+                <div class="col-sm-9">
+                    <input type="password"
+                           class="form-control border border-dark"
+                           name="password"
+                           required>
+                </div>
+            </div>
+
+            <div class="text-center mb-3">
+                <p>
+                    Already Registered?
+                    <a href="{{ url_for('admin_bp.admin_login') }}">Login Now</a>
+                </p>
+            </div>
+
+            <div class="d-grid col-4 mx-auto">
+                <button type="submit" class="btn btn-primary">
+                    Register
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}
