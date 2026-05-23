@@ -1,5 +1,11 @@
 # 🩸 Blood Donation Website
 
+## 👨‍💻 Developed By
+
+**Kshitiz Tiwari**
+**Prashant Dubey**
+
+
 A web-based **Blood Donation Website** developed using **Python Flask and MySQL** to manage blood donors, campaigns, and blood stock efficiently.
 
 The system allows users to register, participate in blood donation campaigns, and enables administrators to manage donors, campaigns, and blood stock through an admin dashboard.
@@ -94,9 +100,6 @@ The main objective of this project is to **automate blood donation management**,
 
 ---
 
-## 👨‍💻 Developed By
-
-**Kshitiz Tiwari**
 
 ---
 
