@@ -9,7 +9,7 @@ The system allows users to register, participate in blood donation campaigns, an
 
 **-Kshitiz Tiwari**
 
-**P-rashant Dubey**
+**-Prashant Dubey**
 
 ## 🚀 Features
 
