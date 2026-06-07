@@ -7,8 +7,9 @@ The system allows users to register, participate in blood donation campaigns, an
 ---
 ## 👨‍💻 Developed By
 
-**Kshitiz Tiwari**\n
-**Prashant Dubey**
+**-Kshitiz Tiwari**
+
+**P-rashant Dubey**
 
 ## 🚀 Features
 
